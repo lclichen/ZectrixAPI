@@ -10,19 +10,13 @@ from .client import APIError, ZectrixClient
 from .config import clear_api_key, load_api_key, save_api_key
 
 
-def _require_api_key() -> str:
-    api_key = load_api_key()
-    if not api_key:
-        click.echo("未检测到 API Key，请先进行配置。", err=True)
-        key = click.prompt("请输入 API Key")
-        save_api_key(key)
-        click.echo("API Key 已保存。")
-        return key
-    return api_key
-
 
 def _get_client() -> ZectrixClient:
-    return ZectrixClient(_require_api_key())
+    api_key = load_api_key()
+    if not api_key:
+        click.echo("错误: 未配置 API Key，请先运行 zectrix config set <key>", err=True)
+        sys.exit(1)
+    return ZectrixClient(api_key)
 
 
 # ── 根命令 ──
