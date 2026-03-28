@@ -51,10 +51,12 @@ class ZectrixClient:
         files: dict | None = None,
         data: dict | None = None,
     ) -> Any:
+        headers = {"Content-Type": None}
         resp = self._session.post(
             f"{BASE_URL}{path}",
             files=files,
             data=data,
+            headers=headers,
         )
         resp.raise_for_status()
         result = resp.json()
