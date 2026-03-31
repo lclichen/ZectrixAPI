@@ -4,16 +4,10 @@
 
 ## 安装
 
-```bash
-pip install zectrixAPI
-```
-
-或从源码安装：
+从源码安装依赖：
 
 ```bash
-git clone https://github.com/your-repo/ZectrixAPI.git
-cd ZectrixAPI
-pip install -e .
+pip install git+https://github.com/lclichen/ZectrixAPI.git
 ```
 
 ## 快速开始
